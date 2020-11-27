@@ -20,7 +20,7 @@ namespace Multiyield
             }
         }
 
-        static async ConcatEnumerable<string> Test()
+        static async IConcatEnumerable<string> Test()
         {
             for (var i = 0; i < 5; i++)
             {

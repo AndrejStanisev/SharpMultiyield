@@ -46,7 +46,11 @@ namespace Multiyield
     }
 
     [AsyncMethodBuilder(typeof(AsyncBuilder<>))]
-    public class ConcatEnumerable<T>: IEnumerable<T>, INotifyCompletion
+    public interface IConcatEnumerable<T> : IEnumerable<T>, INotifyCompletion
+    {
+    }
+
+    public class ConcatEnumerable<T>: IConcatEnumerable<T>
     {
         public IAsyncStateMachine StateMachine { get; set; }
         public EnumerableStep<T> CurrentStep { get;  set; }
@@ -126,6 +130,6 @@ namespace Multiyield
             awaiter.OnCompleted(stateMachine.MoveNext);
         }
 
-        public ConcatEnumerable<T> Task => _enum;
+        public IConcatEnumerable<T> Task => _enum;
     }
 }
