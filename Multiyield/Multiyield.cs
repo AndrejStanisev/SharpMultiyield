@@ -9,7 +9,7 @@ namespace Multiyield
 {
     public static class Yield
     {
-        public static EnumerableStep<T> OneOf<T>(T item) => new EnumerableStep<T>(item);
+        public static EnumerableStep<T> Single<T>(T item) => new EnumerableStep<T>(item);
         public static EnumerableStep<T> Multiple<T>(IEnumerable<T> items) => new EnumerableStep<T>(items);
         public static ConcatEnumerable<T> Break<T>() => new ConcatEnumerable<T>();
     }

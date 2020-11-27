@@ -6,15 +6,8 @@ namespace Multiyield
     class Program
     {
         static async Task Main(string[] args)
-        {
-            var en = Test();
-
-            foreach(var a in en)
-            {
-                Console.WriteLine(a);
-            }
-
-            foreach (var a in en)
+        {            
+            foreach(var a in Test())
             {
                 Console.WriteLine(a);
             }
@@ -22,14 +15,13 @@ namespace Multiyield
 
         static async IConcatEnumerable<string> Test()
         {
-            for (var i = 0; i < 5; i++)
+            for (var i = 1; i < 5; i++)
             {
-                await Yield.OneOf(i.ToString());
+                await Yield.Single($"single{i}");
             }
 
-            await Yield.OneOf("end");
-
-            return "";        
+            await Yield.Multiple(new[] { "multiple1", "multiple2", "multiple3" });
+            return default;        
         }
     }
 }
